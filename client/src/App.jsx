@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Map from "./components/Map";
 import CitySearchMap from "./components/CitySearchMap";
+import Video from "./components/Video";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <div>
         {/* <CitySearchMap /> */}
         <Map />
+        <Video />
       </div>
     </>
   );
