@@ -8,15 +8,24 @@ export default function Video() {
         backgroundColor: "#f0f0f0",
         padding: "40px 0",
         display: "flex",
-        justifyContent: "left",
+        justifyContent: "center",
       }}
     >
-      <ReactPlayer
-        slot="media"
-        src="https://www.youtube.com/watch?v=2KXtlIX_yUs"
-        style={{ height: "450px", width: "50%" }}
-        controls={false}
-      />
+      <div
+        style={{
+          borderRadius: "20px",
+          overflow: "hidden",
+          width: "50%",
+          height: "450px",
+        }}
+      >
+        <ReactPlayer
+          slot="media"
+          src="https://www.youtube.com/watch?v=2KXtlIX_yUs"
+          style={{ height: "100%", width: "100%" }}
+          controls={false}
+        />
+      </div>
     </div>
   );
 }
