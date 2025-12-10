@@ -3,6 +3,7 @@ import "./App.css";
 import Map from "./components/Map";
 import CitySearchMap from "./components/CitySearchMap";
 import Video from "./components/Video";
+import MyForm from "./components/MyForm";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         {/* <CitySearchMap /> */}
         <Map />
         <Video />
+        <MyForm />
       </div>
     </>
   );
