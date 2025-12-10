@@ -74,6 +74,7 @@ export default function Map() {
         flexDirection: "row",
         gap: 4, // spacing between left and right
         p: 2, // padding around container
+        mt: 6,
         alignItems: "flex-start",
         //backgroundColor: "lightgray",
       }}
