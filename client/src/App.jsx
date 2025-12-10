@@ -4,12 +4,14 @@ import Map from "./components/Map";
 import CitySearchMap from "./components/CitySearchMap";
 import Video from "./components/Video";
 import MyForm from "./components/MyForm";
+import BackgroundSection from "./components/BackgroundSection";
 
 function App() {
   return (
     <>
       <div>
         {/* <CitySearchMap /> */}
+        <BackgroundSection />
         <Map />
         <Video />
         <MyForm />
