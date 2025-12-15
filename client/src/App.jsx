@@ -1,22 +1,11 @@
-import { useState } from "react";
 import "./App.css";
-import Map from "./components/Map";
-import CitySearchMap from "./components/CitySearchMap";
-import Video from "./components/Video";
-import MyForm from "./components/MyForm";
-import BackgroundSection from "./components/BackgroundSection";
-import CardExpenses from "./components/ExpensesCard";
+import MyRouter from "./MyRouter";
 
 function App() {
   return (
     <>
       <div>
-        <CardExpenses />
-        {/* <CitySearchMap /> */}
-        <BackgroundSection />
-        <Map />
-        <Video />
-        <MyForm />
+        <MyRouter />
       </div>
     </>
   );

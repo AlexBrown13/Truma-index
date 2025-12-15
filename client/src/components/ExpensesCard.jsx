@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Box, Grid, Card, CardContent, Typography } from "@mui/material";
 
 export default function CardExpenses() {
@@ -103,7 +104,12 @@ export default function CardExpenses() {
                       }}
                     />
                     <Typography color={card.text.color} sx={{ mr: 1 }}>
-                      {line}
+                      <Link
+                        to={"/accidents"}
+                        style={{ textDecoration: "none", color: "inherit" }}
+                      >
+                        {line}
+                      </Link>
                     </Typography>
                   </div>
                 ))}
