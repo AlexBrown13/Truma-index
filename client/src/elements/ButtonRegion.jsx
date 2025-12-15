@@ -17,7 +17,19 @@ export default function ButtonRegion() {
       <Typography variant="h5" gutterBottom>
         מחוזות
       </Typography>
-      <ButtonGroup orientation="vertical" variant="contained">
+      <ButtonGroup
+        orientation="vertical"
+        variant="contained"
+        sx={{
+          "& .MuiButton-root": {
+            backgroundColor: "#7eaa85",
+            color: "#fff",
+            "&:hover": {
+              backgroundColor: "#41645a",
+            },
+          },
+        }}
+      >
         <Button>צפון</Button>
         <Button>מזרח</Button>
         <Button>מערב</Button>

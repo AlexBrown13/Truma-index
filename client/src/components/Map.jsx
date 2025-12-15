@@ -85,7 +85,7 @@ export default function Map() {
             display: "flex",
             flexDirection: "row",
             alignItems: "flex-start",
-            border: "1px solid #000",
+            border: "0px solid #000",
             height: "50%",
           }}
         >

@@ -70,7 +70,15 @@ export default function MyForm() {
             fullWidth
           />
 
-          <Button variant="contained" type="submit" fullWidth>
+          <Button
+            variant="contained"
+            type="submit"
+            fullWidth
+            sx={{
+              backgroundColor: "#f8e087",
+              color: "#000",
+            }}
+          >
             הרשמה
           </Button>
         </Stack>
