@@ -5,11 +5,13 @@ import CitySearchMap from "./components/CitySearchMap";
 import Video from "./components/Video";
 import MyForm from "./components/MyForm";
 import BackgroundSection from "./components/BackgroundSection";
+import CardExpenses from "./components/ExpensesCard";
 
 function App() {
   return (
     <>
       <div>
+        <CardExpenses />
         {/* <CitySearchMap /> */}
         <BackgroundSection />
         <Map />
