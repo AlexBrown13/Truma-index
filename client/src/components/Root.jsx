@@ -5,7 +5,7 @@ export default function Root() {
     <div>
       <Link to={"/"}>Home | </Link>
       <Link to={"accidents"}>page2 | </Link>
-      <Link to={"page3/"}>page3 | </Link>
+      <Link to={"red-alert/"}>red alert | </Link>
       <Outlet />
     </div>
   );

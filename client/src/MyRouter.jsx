@@ -3,6 +3,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "./components/Root";
 import Home from "./components/Home";
 import AccidentPage from "./components/section-expenses/AccidentPage";
+import Paper from "./components/Paper";
+import RedAlertMap from "./pages/RedAlertMap";
 
 export default function MyRouter() {
   const router = createBrowserRouter([
@@ -17,6 +19,10 @@ export default function MyRouter() {
         {
           path: "/accidents",
           element: <AccidentPage />,
+        },
+        {
+          path: "/red-alert",
+          element: <RedAlertMap />,
         },
       ],
     },

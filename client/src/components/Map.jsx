@@ -92,9 +92,7 @@ export default function Map() {
           <Box sx={{ flex: 1 }}>
             <CityList />
           </Box>
-          <Box sx={{ flex: 1 }}>
-            <ButtonRegion />
-          </Box>
+          <Box sx={{ flex: 1 }}>{/* <ButtonRegion /> */}</Box>
         </Box>
         <Box sx={{ height: "50%" }}>
           <CardTextByEvent story={story} cityName={cityName} date={date} />

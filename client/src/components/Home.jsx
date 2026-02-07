@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div>
       <ExpensesCard />
-      <BackgroundSection />
+      {/* <BackgroundSection /> */}
       <Map />
       <Video />
       <MyForm />
