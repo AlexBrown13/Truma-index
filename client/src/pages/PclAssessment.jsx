@@ -1,4 +1,14 @@
 import React, { useState } from "react";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Container,
+  LinearProgress,
+  TextField,
+  Typography,
+  Paper,
+} from "@mui/material";
 
 const QUESTIONS = [
   "זיכרונות חוזרים ונשנים, לא רצוניים, של החוויה הטראומטית",
@@ -54,32 +64,38 @@ export default function PclAssessment() {
     }
   };
 
+
+
   return (
-    <div
-      className="min-h-screen bg-gray-50 flex items-center justify-center p-4"
-      dir="rtl"
-    >
-      <div className="max-w-xl w-full bg-white p-8 rounded-2xl shadow-lg">
-        {/* Progress Bar */}
-        <div className="w-full bg-gray-200 h-2 rounded-full mb-6">
-          <div
-            className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-            style={{
-              width: `${((currentIndex + 1) / QUESTIONS.length) * 100}%`,
-            }}
-          ></div>
-        </div>
-
-        <span className="text-sm text-gray-400">
+    <Container maxWidth="sm" sx={{ mt: 5, mb: 5, direction: "rtl" }}>
+      <Paper elevation={4} sx={{ p: 4 }}>
+        {/* Progress */}
+        <Typography variant="body2" color="text.secondary" mb={1}>
           שאלה {currentIndex + 1} מתוך {QUESTIONS.length}
-        </span>
-        <h2 className="text-xl font-bold mt-2 mb-6">
-          {QUESTIONS[currentIndex]}
-        </h2>
+        </Typography>
 
-        <textarea
-          autoFocus
-          className="w-full border-2 border-gray-200 rounded-xl p-4 focus:border-blue-500 outline-none transition h-32"
+        <LinearProgress
+          variant="determinate"
+          value={((currentIndex + 1) / QUESTIONS.length) * 100}
+          sx={{
+            height: 12, 
+            borderRadius: 6,
+            mb: 3,
+            transform: "scaleX(-1)", 
+          }}
+        />
+
+        {/* Question */}
+        <Typography variant="h6" mb={3}>
+          {QUESTIONS[currentIndex]}
+        </Typography>
+
+        {/* Answer */}
+        <TextField
+          fullWidth
+          multiline
+          rows={5}
+          variant="outlined"
           placeholder="תאר/י בפירוט באיזו מידה זה הפריע לך בחודש האחרון..."
           value={answers[currentIndex]}
           onChange={(e) => {
@@ -89,29 +105,33 @@ export default function PclAssessment() {
           }}
         />
 
-        <div className="flex justify-between mt-8">
-          <button
+        {/* Buttons */}
+        <Box mt={4} display="flex" justifyContent="space-between">
+          <Button
+            variant="outlined"
             disabled={currentIndex === 0}
             onClick={() => setCurrentIndex(currentIndex - 1)}
-            className="text-gray-500 hover:text-black disabled:opacity-30"
           >
             חזור
-          </button>
+          </Button>
 
-          <button
-            onClick={handleNext}
+          <Button
+            variant="contained"
             disabled={!answers[currentIndex].trim() || loading}
-            className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition"
+            onClick={handleNext}
+            endIcon={loading && <CircularProgress size={20} />}
           >
-            {loading
-              ? "מנתח..."
-              : currentIndex === QUESTIONS.length - 1
-              ? "סיים ונתח"
-              : "המשך"}
-          </button>
-        </div>
-      </div>
-      <div>result: {result}/80</div>
-    </div>
+            {currentIndex === QUESTIONS.length - 1 ? "סיים ונתח" : "המשך"}
+          </Button>
+        </Box>
+
+        {/* Result */}
+        {result !== null && (
+          <Typography mt={4} variant="h6" color="primary">
+            התוצאה שלך: {result} / 80
+          </Typography>
+        )}
+      </Paper>
+    </Container>
   );
 }
