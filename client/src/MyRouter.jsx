@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import AccidentPage from "./components/section-expenses/AccidentPage";
 import Paper from "./components/Paper";
 import RedAlertMap from "./pages/RedAlertMap";
+import PclAssessment from "./pages/PclAssessment";
 
 export default function MyRouter() {
   const router = createBrowserRouter([
@@ -23,6 +24,10 @@ export default function MyRouter() {
         {
           path: "/red-alert",
           element: <RedAlertMap />,
+        },
+        {
+          path: "/evaluate",
+          element: <PclAssessment />,
         },
       ],
     },
