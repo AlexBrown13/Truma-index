@@ -5,7 +5,7 @@ import Home from "./components/Home";
 import AccidentPage from "./components/section-expenses/AccidentPage";
 import Paper from "./components/Paper";
 import RedAlertMap from "./pages/RedAlertMap";
-import PclAssessment from "./pages/PclAssessment";
+import ChatBot from "./pages/ChatBot";
 
 export default function MyRouter() {
   const router = createBrowserRouter([
@@ -27,7 +27,7 @@ export default function MyRouter() {
         },
         {
           path: "/evaluate",
-          element: <PclAssessment />,
+          element: <ChatBot />,
         },
       ],
     },

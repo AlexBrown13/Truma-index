@@ -33,83 +33,58 @@ questions_pcl = [
     "קושי להירדם או להשאר ישנ.ה"
 ]
 
-answers_pcl_example = [
-    "בכלל לא",
-    "מעט",
-    "מעט",
-    "במידה בינונית",
-    "מעט",
-    "במידה בינונית",
-    "מעט",
-    "מעט",
-    "במידה בינונית",
-    "במידה בינונית",
-    "במידה בינונית",
-    "מעט",
-    "מעט",
-    "מעט",
-    "במידה בינונית",
-    "מעט",
-    "במידה בינונית",
-    "במידה בינונית",
-    "מעט",
-    "במידה בינונית"
-]
 
 def pcl_assessment():
-    user_responses = []
+    conversation_data = []
+
     print(get_display("--- תחילת הערכת PCL-5 ---"))
     
     for i, question in enumerate(questions_pcl, 1):
-        display_question = get_display(f"שאלה {i}: {question} \nתשובה שלך:")
+        display_question = get_display(f"שאלה {i}: {question}")
         print(display_question)
-        #answer = input()
-        answer = answers_pcl_example[i-1] # temp answers
-        user_responses.append({"q_num": i, "question": question, "answer": answer})
-        print("\n")
-
-    formatted_responses = "\n".join([f"{r['q_num']}. שאלה: {r['question']} | תשובה: {r['answer']}" for r in user_responses])
-    
-    prompt = f"""
-    להלן תשובות של משתמש לשאלון PCL-5. 
-    עבור כל שאלה, דרג את עוצמת הסבל על סולם PCL-5:
-    0 - בכלל לא
-    1 - מעט מאוד
-    2 - במידה בינונית
-    3 - במידה רבה
-    4 - במידה רבה מאוד
-    תחזיר רק מספר בודד בין 0 ל-4. 
-    
-    "להלן רשימה של בעיות ותופעות מהן סובלים לעיתים אנשים בתגובה לאירועי חיים מלחיצים "
-    "שקרו להם או למישהו\\י קרוב. עבור כל היגד סמן באיזו מידה הפריע לך בעיה זו בחודש האחרון. - "
-    התשובות:
-    {formatted_responses}
-    
-    תחזיר את התוצאה בפורמט JSON בלבד, כרשימה של מספרים (integers) המייצגים את הציונים לפי הסדר.
-    לדוגמה: [0, 2, 4, 1, ...] 
-    """
-
-    try:
-        response = client.models.generate_content(
-            model='gemini-3-flash-preview',
-            contents=prompt,
-            config={'response_mime_type': 'application/json'}
-        )
-
-        scores = json.loads(response.text)
-        for i, score in enumerate(scores):
-            # score 0-4 valid
-            user_responses[i]['score'] = score
-
-        return user_responses
+        answer = input(get_display("תשובה שלך: ")).strip()
         
-    except Exception as e:
-        print(e)
-        return None
+        
+        prompt = f"""
+        המשתמש ענה על השאלה הבאה משאלון PCL-5:
+
+        שאלה: {question}
+        תשובה: {answer}
+
+        אנא הגב בצורה אמפתית, תומכת ולא שיפוטית כמו צ'אטבוט טיפולי.
+        אל תחזיר ציונים מספריים.
+        אל תנתח טכנית.
+        כתוב תגובה קצרה ומכילה.
+        """
+
+        try:
+            response = client.models.generate_content(
+                model='gemini-3-flash-preview',
+                contents=prompt,
+            )
+
+            ai_response = response.text
+
+            conversation_data.append({
+                "question_number": i,
+                "question": question,
+                "user_answer": answer,
+                "ai_response": ai_response
+            })
+
+            print(get_display("\nתגובה:\n"))
+            print(get_display(ai_response))
+            print("\n" + "-" * 50 + "\n")
+            
+        except Exception as e:
+            print("Error: ", e)
+            return None
+    
+    return conversation_data
 
 
-final_data = pcl_assessment()
-total_score = sum(int(item.get('score', 0)) for item in final_data)
-print(get_display(f"--- סיכום ---"))
-print(get_display(f"הציון הכולל (Trauma Index) הוא: {total_score}/80"))
-print(f"\n{final_data}")
+# Run assessment
+data = pcl_assessment()
+print(get_display("\n--- סיום השאלון ---\n"))
+print("האובייקט שנשמר:\n")
+print(data)
