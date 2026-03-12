@@ -57,7 +57,7 @@ export default function ChatBot() {
     const text = input.trim();
     setInput("");
 
-    setMessages((prev) => [...prev, { role: "user", text }]);
+    setMessages((prev) => [...prev, { role: "user", text}]);
     setLoading(true);
 
     try {
