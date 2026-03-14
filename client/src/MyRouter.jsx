@@ -6,6 +6,7 @@ import AccidentPage from "./components/section-expenses/AccidentPage";
 import Paper from "./components/Paper";
 import RedAlertMap from "./pages/RedAlertMap";
 import ChatBot from "./pages/ChatBot";
+import IdentifyPersona from "./pages/IdentifyPersona";
 
 export default function MyRouter() {
   const router = createBrowserRouter([
@@ -28,6 +29,10 @@ export default function MyRouter() {
         {
           path: "/evaluate",
           element: <ChatBot />,
+        },
+        {
+          path: "/identify-persona",
+          element: <IdentifyPersona />,
         },
       ],
     },
